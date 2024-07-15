@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+        .text {
+            flex: 1;
+            padding: 1rem;
+        }
+        .image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hide the default checkbox */
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Style the label for the checkbox */
+        label.checkbox-label {
+            position: relative;
+            padding-left: 25px; /* space for the custom checkbox */
+            cursor: pointer;
+            color: #333; /* default label color */
+        }
+
+        /* Custom checkbox */
+        label.checkbox-label:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px; /* width of the custom checkbox */
+            height: 18px; /* height of the custom checkbox */
+            border: 2px solid #777; /* border color */
+            background-color: #fff; /* background color */
+        }
+
+        /* Red color when checkbox is checked */
+        input[type="checkbox"]:checked + label.checkbox-label:before {
+            background-color: #f00; /* background color when checked */
+            border-color: #f00; /* border color when checked */
+        }
+
+        /* Hover effect for "Contact Us" button */
+        #contactBtn:hover {
+            background-color: #f00; /* red background on hover */
+        }
+
+        /* Close button hover effect */
+        #closeModal:hover {
+            color: #f00; /* red text color on hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+      </div>
+
+    <div class="container">
+        <div class="text">
+            <h3 class="text-red-500 text-lg font-semibold mb-2">AWARD WINNING</h3>
+            <h1 class="text-4xl font-bold text-black mb-4">DIGITAL MARKETING AGENCY</h1>
+            <p class="text-gray-600 mb-6">
+                Morbi sed lacus nec risus finibus feugiat at fermentum nibh. Pellentesque vitae ante at elit fringilla ac at purus. Morbi sed lacus nec risus finibus feugiat at fermentum.
+            </p>
+            <button id="contactBtn" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+                CONTACT US
+            </button>
+        </div>
+        <div class="image">
+            <img
+                src="https://m.media-amazon.com/images/I/71E5OclZxZL._AC_UF350,350_QL80_.jpg"
+                alt="Person working on digital marketing"
+            />
+        </div>
+    </div>
+    <div class="container">
+        <!-- Your content here -->
+        <a href="high.html" class="bottom-right-link"><b>go to next⏭️</b></a>
+
+
+    <div id="contactModal" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80 hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 md:w-1/2">
+            <h2 class="text-2xl font-bold text-black mb-4">Talk To Us</h2>
+            <form id="contactForm" class="mb-4" action="https://getform.io/f/ayvpvlvb" method="POST">
+                <label for="name" class="block text-sm text-gray-600 mb-2">
+                    Name
+                </label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="w-full bg-gray-200 text-black border border-gray-300 rounded py-2 px-3 mb-3"
+                    placeholder="Enter your name"
+                    required
+                />
+                <label for="email" class="block text-sm text-gray-600 mb-2">
+                    Work Email
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="w-full bg-gray-200 text-black border border-gray-300 rounded py-2 px-3 mb-3"
+                    placeholder="Enter your email"
+                    required
+                />
+                
+                <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+                    Contact Us
+                </button>
+            </form>
+           
+            
+            <button id="closeModal" class="text-red-500 hover:text-red-600">
+                Close
+            </button>
+            
+            <!-- Checkbox and label -->
+            <input type="checkbox" id="myCheckbox" name="myCheckbox" value="i agree to Fyle's term and conditions,and provide consent to send me communication.">
+            <label for="myCheckbox" class="checkbox-label">I agree to Fyle's term and conditions, and provide consent to send me communication.</label>
+
+        </div>
+    </div>
+
+    <script>
+        const contactBtn = document.getElementById('contactBtn');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+
+        contactBtn.addEventListener('click', () => {
+            contactModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            contactModal.classList.add('hidden');
+        });
+
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // Hide modal after successful submission
+                contactModal.classList.add('hidden');
+
+                // Optionally: Reset form fields after successful submission
+                contactForm.reset();
+
+                // Add any success message handling here if needed
+                console.log('Form submitted successfully');
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                // Handle error here (e.g., show error message to user)
+            }
+        });
+    </script>
+</body>
+</html>
